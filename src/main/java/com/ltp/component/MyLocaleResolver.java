@@ -1,13 +1,13 @@
 package com.ltp.component;
 
 
+import org.springframework.context.annotation.Configuration;
 import org.springframework.util.StringUtils;
 import org.springframework.web.servlet.LocaleResolver;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.Locale;
-import java.util.Set;
 
 /**
  * @ClassName MyLocaleResolver
@@ -16,6 +16,7 @@ import java.util.Set;
  * @Description //TODO
  * @Version 1.0
  */
+@Configuration
 public class MyLocaleResolver implements LocaleResolver {
 
     @Override
