@@ -17,7 +17,10 @@
     <img class="mb-4" src="asserts/img/bootstrap-solid.svg" th:src="@{asserts/img/bootstrap-solid.svg}" alt=""
          width="72" height="72">
     <h1 class="h3 mb-3 font-weight-normal" th:text="#{login.tip}">Please sign in</h1>
-    <p th:text="${session.msg}" style="color: red" th:if="${not #strings.isEmpty(session.msg)}"></p>
+    <!--处理没有权限的情况-->
+    <p th:text="${msg}" style="color: red" th:if="${not #strings.isEmpty(msg)}"></p>
+    <!--处理用户名或密码错误的情况-->
+    <p style="color: red" th:text="${param.msg[0]}" th:unless="${param.msg == null}"></p>
     <label class="sr-only" th:text="#{login.username}">Username</label>
     <input name="username" type="text" class="form-control" placeholder="Username" th:placeholder="#{login.username}" required=""
            autofocus="">
