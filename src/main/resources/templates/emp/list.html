@@ -76,13 +76,16 @@
                             <td th:text="${#dates.format(emp.birth, 'yyyy-MM-dd HH:mm:ss')}"></td>
                             <td>
                                 <a class="btn btn-sm btn-primary" th:href="@{/emp/}+${emp.id}">编辑</a>
-                                <button class="btn btn-sm btn-danger">删除</button>
+                                <button th:attr="del_uri=@{/emp/}+${emp.id}" type="submit" class="btn btn-sm btn-danger deleteEmp">删除</button>
                             </td>
                         </tr>
                     </tbody>
                 </table>
             </div>
         </main>
+        <form id="deleteEmpForm" method="post">
+            <input type="hidden" name="_method" value="delete">
+        </form>
     </div>
 </div>
 
@@ -131,7 +134,14 @@
         }
     });
 </script>
-
+<script>
+    $(".deleteEmp").click(function () {
+        //修改form表单提交地址
+        let del_uri=$(this).attr("del_uri");
+        $("#deleteEmpForm").attr("action",del_uri).submit();
+        return false;
+    })
+</script>
 </body>
 
 </html>

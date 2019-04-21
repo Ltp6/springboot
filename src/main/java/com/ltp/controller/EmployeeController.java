@@ -7,10 +7,7 @@ import com.ltp.model.Employee;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
 
@@ -71,7 +68,6 @@ public class EmployeeController {
     @PostMapping(value = "/emp")
     //SpringMVC自动封装数据
     public String addEmployee(Employee employee) {
-        System.out.println(employee);
         employeeDao.save(employee);
         return "redirect:/emps";
     }
@@ -95,10 +91,29 @@ public class EmployeeController {
         model.addAttribute("departments", departments);
         return "emp/add";
     }
+    /**
+     * @return String
+     * @Author Ltp
+     * @Description 修改员工信息
+     * @Date 2019/4/21 15:38
+     * @Param employee 封装员工信息
+     **/
     @PutMapping(value = "/emp")
     //SpringMVC自动封装数据
     public String updateEmployee(Employee employee) {
         employeeDao.save(employee);
+        return "redirect:/emps";
+    }
+    /**
+     * @return String
+     * @Author Ltp
+     * @Description 删除员工信息
+     * @Date 2019/4/21 15:38
+     * @Param id 员工编号
+     **/
+    @DeleteMapping(value = "/emp/{id}")
+    public String deleteEmployee(@PathVariable(value = "id") Integer id) {
+        employeeDao.delete(id);
         return "redirect:/emps";
     }
 }
