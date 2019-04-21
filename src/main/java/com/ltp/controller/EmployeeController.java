@@ -8,7 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 
 import java.util.Collection;
 
@@ -70,6 +72,32 @@ public class EmployeeController {
     //SpringMVC自动封装数据
     public String addEmployee(Employee employee) {
         System.out.println(employee);
+        employeeDao.save(employee);
+        return "redirect:/emps";
+    }
+
+    /**
+     * @return String
+     * @Author Ltp
+     * @Description 跳转到修改员工页面
+     * @Date 2019/4/21 15:38
+     * @Param
+     **/
+    @GetMapping(value = "/emp/{id}")
+    //SpringMVC自动封装数据
+    public String updateEmployeePage(@PathVariable(value = "id") Integer id,Model model) {
+        //查询对应ID的员工信息
+        Employee employee = employeeDao.get(id);
+        model.addAttribute("employee",employee);
+        //查出所有部门名称
+        Collection<Department> departments = departmentDao.getDepartments();
+        //将数据放入请求域中
+        model.addAttribute("departments", departments);
+        return "emp/add";
+    }
+    @PutMapping(value = "/emp")
+    //SpringMVC自动封装数据
+    public String updateEmployee(Employee employee) {
         employeeDao.save(employee);
         return "redirect:/emps";
     }
