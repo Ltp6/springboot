@@ -2,10 +2,6 @@ package com.ltp.config;
 
 import com.ltp.component.LoginHandlerInterceptor;
 import com.ltp.component.MyLocaleResolver;
-import org.springframework.boot.web.server.WebServer;
-import org.springframework.boot.web.servlet.ServletContextInitializer;
-import org.springframework.boot.web.servlet.server.AbstractServletWebServerFactory;
-import org.springframework.boot.web.servlet.server.ConfigurableServletWebServerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.LocaleResolver;
@@ -25,7 +21,6 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 //使SpringMVC的自动配置文件失效
 //@EnableWebMvc
 public class MyMvcConfig implements WebMvcConfigurer {
-
     /**
      * @return WebMvcConfigurer
      * @Author Ltp
